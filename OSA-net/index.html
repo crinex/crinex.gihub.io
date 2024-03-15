@@ -215,7 +215,7 @@
             <div class="container is-max-desktop">
                 <h2 class="title is-3">OSA-Net Architecture</h2>
                 <p>The structure of the model we propose is shown in the figure below.</p>
-                <img loading='lazy' src='static/images/net-archi.png'/>
+                <img loading='lazy' src='static/images/net-archi.png' style="width: 50%;" />
                 <p>
                     OSA-Net is composed of six main stages, with key blocks
                     and layers including the Stem Block, SA Block, global
@@ -224,16 +224,24 @@
                     areas, and in OSA-Net, Stages 1-5 serve as the feature
                     extraction area while Stage 6 serves as the classification area
                     for determining the class of OSA.
+                    SA Block is a core block of our proposed deep
+                    learning model based on depthwise-separable convolutional
+                    layer. It is composed of 2D-convolutional layer, batch
+                    normalization, activation function, depthwise-separable
+                    convolutional layer, and SE Block, and is present in OSANet's
+                    Stage 2-5 (see Table 1, Stage 2-5). Although all SA
+                    Blocks have the same structure, the main parameters of the
+                    2D-convolutional layer are different for each one. The filter
+                    size of the SA Block's 2D-convolutional layer is (1*1). When
+                    the filter size of the convolutional layer is (1*1), the size of
+                    the input feature map and the output feature map remains the
+                    same, preserving spatial information between them. This is
+                    effective in reducing computational complexity and the
+                    number of parameters in the model, thus positively impacting
+                    the model's training speed and generalization ability.
                 </p>
-                    Specifically, SDM-v2.0 is set to generate with DDIM scheduler with 25 steps and SDXL and ours are set to use Euler discrete scheduler with 25 steps. 
-                    And we set all models to use the classifier-free guidance with 7.5.
-                    Except DALLE-2, we generate all images with FP16 precision.
-                For DALLE-2, we get generated images via OpenAI API.
                 <br>
-                </p>
-                <img loading="lazy" src="static/images/sota_human_updated.svg" alt="human" style="width: 100%; max-width: none;" />
-                <img loading="lazy" src="static/images/sota_3d-art_updated.svg" alt="3d" style="width: 100%; max-width: none;" />
-                <img loading="lazy" src="static/images/sota_painting_updated.svg" alt="painting" style="width: 100%; max-width: none;" />
+                <img loading="lazy" src="static/images/sa-structure.png" alt="human" style="width: 50%; max-width: none;" />
                 <!-- <img loading="lazy" src="static/images/controlnet/controlnet_iclr.svg" alt="iclr" /> -->
             </div>
         </div>
