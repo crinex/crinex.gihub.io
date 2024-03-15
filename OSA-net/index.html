@@ -58,11 +58,11 @@
                         <div class="is-size-5 publication-authors">
                             <!-- Paper authors -->
                             <span class="author-block">
-                                <a href="https://aunal.org/people/jypark" target="_blank">June-Young Park</a><sup style="color:#aa0404;">1 </sup></span>
+                                <a href="https://aunal.org/people/jypark" target="_blank">June-Young Park</a><sup style="color:#aa0404;">1 </sup>,</span>
                             <span class="author-block">
-                                <a href="https://www.dkuh.co.kr/html_2016/03/01_02.php?idx=456150&url=%2Fhtml_2016%2F03%2F01.php&drword=%EC%8B%A0%ED%98%9C%EB%A6%BC" target="_blank">Hye-Rim Shin</a><sup style="color:#aa0404;">2</sup>,</span>
+                                <a href="https://www.dkuh.co.kr/html_2016/03/01_02.php?idx=456150&url=%2Fhtml_2016%2F03%2F01.php&drword=%EC%8B%A0%ED%98%9C%EB%A6%BC" target="_blank">Hye-Rim Shin</a><sup style="color:#1b5dd7;">2</sup>,</span>
                             <span class="author-block">
-                                <a href="https://aunal.org/people/tjkim" target="_blank">Tae-Joon Kim</a><sup style="color:#ecaa2e;">3</sup>,</span>
+                                <a href="https://aunal.org/people/tjkim" target="_blank">Tae-Joon Kim</a><sup style="color:#ecaa2e;">3</sup></span>
                         </div>
 
                         <div class="is-size-5 publication-authors">
@@ -142,7 +142,18 @@
                     <h2 class="title is-3">Abstract</h2>
                     <div class="content has-text-justified">
                         <p>
-                            Obstructive sleep apnea (OSA) has a high prevalence worldwide, particularly among adults and the population with comorbidities. Adult men have a higher incidence rate and approximately 15-30% prevalence, and OSA is associated with other diseases such as obesity, hypertension, and diabetes. Polysomnography is essential for diagnosing OSA, but discomfort and overnight testing are practical difficulties. Therefore, several questionnaires, such as the STOP-BANG and Berlin questionnaire, have been developed for initial screening of OSA, although their use is limited due to their low accuracy. One of the pathophysiology of OSA is related to craniofacial anatomy, and several previous studies have investigated facial anatomy using 2D or 3D photographs with a small number of patients, but practical application for screening and diagnosing OSA has not been attempted yet. Therefore, our research aims to screen OSA and stratify its severity with feasible 2D photographs and a big dataset using a novel deep learning algorithm. We developed a new CNN-based algorithm called OSA-Net, which diagnoses OSA patients using information on facial anatomical abnormalities by ready-to-use photographs. Facial pictures of 900 patients who underwent polysomnography were used as a dataset for model training. The results of our algorithm showed a high diagnostic accuracy over 85% for classifying OSA severity into normal, mild, moderate, and severe degrees. Furthermore, we used Grad-CAM to verify the accuracy of our model, and the results showed that our model accurately recognizes facial contours. This study demonstrates the potential of using artificial intelligence with image big data as a new OSA screening tool.
+                            Obstructive sleep apnea (OSA) has a high prevalence worldwide, particularly among adults and the population with comorbidities. 
+                            Adult men have a higher incidence rate and approximately 15-30% prevalence, and OSA is associated with other diseases such as obesity, hypertension, and diabetes. 
+                            Polysomnography is essential for diagnosing OSA, but discomfort and overnight testing are practical difficulties. 
+                            Therefore, several questionnaires, such as the STOP-BANG and Berlin questionnaire, have been developed for initial screening of OSA, although their use is limited due to their low accuracy. 
+                            One of the pathophysiology of OSA is related to craniofacial anatomy, and several previous studies have investigated facial anatomy using 2D or 3D photographs with a small number of patients, 
+                            but practical application for screening and diagnosing OSA has not been attempted yet. 
+                            Therefore, our research aims to screen OSA and stratify its severity with feasible 2D photographs and a big dataset using a novel deep learning algorithm. 
+                            We developed a new CNN-based algorithm called OSA-Net, which diagnoses OSA patients using information on facial anatomical abnormalities by ready-to-use photographs. 
+                            Facial pictures of 900 patients who underwent polysomnography were used as a dataset for model training. 
+                            The results of our algorithm showed a high diagnostic accuracy over 85% for classifying OSA severity into normal, mild, moderate, and severe degrees. 
+                            Furthermore, we used Grad-CAM to verify the accuracy of our model, and the results showed that our model accurately recognizes facial contours. 
+                            This study demonstrates the potential of using artificial intelligence with image big data as a new OSA screening tool.
                         </p>
                     </div>
                 </div>
@@ -166,11 +177,36 @@
     <section class="hero is-small">
         <div class="hero-body">
             <div class="container is-max-desktop">
-                <h2 class="title is-3">Latency and memory usage comparison on different GPUs.</h2>
-                <p>We measure the inference time of SDM-v2.0 with 768x768 resolution and the other models with 1024x1024 using a variety of consumer-grade GPUs: NVIDIA 3060Ti (8GB), 2080Ti (11GB), and 4090 (24GB). We use 25 denoising steps and FP16/FP32 precisions. OOM means Out-of-Memory. Note that SDXL-Base cannot operate in the 8GB-GPU.
+                <h2 class="title is-3">Datasets & Preprocessing</h2>
+                <p>
+                    To train and evaluate our proposed OSA-Net model,
+                    we used facial images of patients who underwent PSG tests
+                    at the Neurology Department of Cheonan Dankook
+                    University Hospital from 2012 to 2022. 
+                    The data were obtained from adults aged 19 or older and Korean nationals.
+                    PSG technicians collected facial photos using the following
+                    protocol and equipment. Equipment: Samsung digital camera
+                    WB350F. Photography: Facial photos were taken once each
+                    from the front and left at 90-degree angles.
+                    OSA patients typically have a thick
+                    neck and jaw, which is caused by an increase in the amount
+                    of muscle and adipose tissue that repetitively obstructs the
+                    upper airway. This phenomenon may be related to obesity
+                    and may interact with congenital anatomical features of the
+                    face, further exacerbating the repetitive obstruction of the
+                    upper airway.
+                    Unnecessary
+                    parts of the images, such as the background, are removed.
+                    Using MediaPipe, an open-source face recognition library in
+                    Python, we are able to acquire four coordinates (left top, right
+                    top, left bottom, right bottom) that enclose the face area.
+                    Based on this coordinate information, we crop the original
+                    image to obtain only the side face [17]. Additionally, taking
+                    into consideration the conditions of the hardware, all images
+                    have been resized to (256*256).
                 </p>
                 <br>
-                <img loading="lazy" src="static/images/latency_gpu.svg" alt="efficiency" />
+                <img loading="lazy" src="static/images/prepro-pipeline.png" />
             </div>
         </div>
     </section>
