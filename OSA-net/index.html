@@ -201,7 +201,7 @@
                     Python, we are able to acquire four coordinates (left top, right
                     top, left bottom, right bottom) that enclose the face area.
                     Based on this coordinate information, we crop the original
-                    image to obtain only the side face [17]. Additionally, taking
+                    image to obtain only the side face. Additionally, taking
                     into consideration the conditions of the hardware, all images
                     have been resized to (256*256).
                 </p>
@@ -213,12 +213,18 @@
     <section class="hero is-small">
         <div class="hero-body">
             <div class="container is-max-desktop">
-                <h2 class="title is-3">Qualitative comparison</h2>
-                <p>We follow the official inference setups of each model (<a
-                    href="https://huggingface.co/stabilityai/stable-diffusion-2"
-                    target="_blank">SDM-v2.0</a> and <a
-                    href="https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0"
-                    target="_blank">SDXL-Base-1.0</a>) in the huggingface repository. 
+                <h2 class="title is-3">OSA-Net Architecture</h2>
+                <p>The structure of the model we propose is shown in the figure below.</p>
+                <img loading='lazy' src='static/images/net-archi.png'/>
+                <p>
+                    OSA-Net is composed of six main stages, with key blocks
+                    and layers including the Stem Block, SA Block, global
+                    average pooling (GAP), and fully connected layer. CNNs are
+                    generally divided into feature extraction and classification
+                    areas, and in OSA-Net, Stages 1-5 serve as the feature
+                    extraction area while Stage 6 serves as the classification area
+                    for determining the class of OSA.
+                </p>
                     Specifically, SDM-v2.0 is set to generate with DDIM scheduler with 25 steps and SDXL and ours are set to use Euler discrete scheduler with 25 steps. 
                     And we set all models to use the classifier-free guidance with 7.5.
                     Except DALLE-2, we generate all images with FP16 precision.
