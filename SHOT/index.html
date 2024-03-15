@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>SHOT</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <meta property="og:image" content="https://junhoo-lee.com/mixnerf/img/mixnerf_titlecard.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1783"> -->
+    <!-- <meta property="og:image:height" content="1619"> -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://junhoo-lee.com/SHOT">
+    <meta property="og:title" content="SHOT: Suppressing the Hessian along the Optimization Trajectory for Gradient-Based Meta-Learning">
+    <meta property="og:description" content="In this paper, we hypothesize that gradient-based meta-learning (GBML) implicitly suppresses the Hessian along the optimization trajectory in the inner loop. Based on this hypothesis, we introduce an algorithm called SHOT (Suppressing the Hessian along the Optimization Trajectory) that minimizes the distance between the parameters of the target and reference models to suppress the Hessian in the inner loop. Despite dealing with high-order terms, SHOT does not increase the computational complexity of the baseline model much. It is agnostic to both the algorithm and architecture used in GBML, making it highly versatile and applicable to any GBML baseline. To validate the effectiveness of SHOT, we conduct empirical tests on standard few-shot learning tasks and qualitatively analyze its dynamics. We confirm our hypothesis empirically and demonstrate that SHOT outperforms the corresponding baseline. ">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SHOT: Suppressing the Hessian along the Optimization Trajectory for Gradient-Based Meta-Learning">
+    <meta name="twitter:description" content="In this paper, we hypothesize that gradient-based meta-learning (GBML) implicitly suppresses the Hessian along the optimization trajectory in the inner loop. Based on this hypothesis, we introduce an algorithm called SHOT (Suppressing the Hessian along the Optimization Trajectory) that minimizes the distance between the parameters of the target and reference models to suppress the Hessian in the inner loop. Despite dealing with high-order terms, SHOT does not increase the computational complexity of the baseline model much. It is agnostic to both the algorithm and architecture used in GBML, making it highly versatile and applicable to any GBML baseline. To validate the effectiveness of SHOT, we conduct empirical tests on standard few-shot learning tasks and qualitatively analyze its dynamics. We confirm our hypothesis empirically and demonstrate that SHOT outperforms the corresponding baseline. ">
+    <!-- <meta name="twitter:image" content="https://junhoo-lee.com/SHOT/img/SHOT_titlecard.png"> -->
+
+
+    <!-- mirror: F0%9F%AA%9E&lt -->
+    <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;📊&lt;/text&gt;&lt;/svg&gt;">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/codemirror.min.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/video_comparison.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="container" id="header" style="text-align: center; margin: auto;">
+        <div class="row" id="title-row" style="max-width: 100%; margin: 0 auto; display: inline-block">
+            <h2 class="col-md-12 text-center" id="title">
+                <b>SHOT</b>: Suppressing the Hessian along the Optimization Trajectory for Gradient-Based Meta-Learning
+                <br>
+                <small>
+                    NeurIPS 2023
+                </small>
+            </h2>
+        </div>
+        <div class="row" id="author-row" style="margin:0 auto;">
+            <div class="col-md-12 text-center" style="display: table; margin:1 auto">
+                <table class="author-table" id="author-table">
+                    <tr>
+                        <td>
+                            <a style="text-decoration:none" href="https://junhoo-lee.com/">
+                              Junhoo Lee
+                            </a>
+                            <br>Seoul National University
+                        </td>
+                        <td>
+                            Jayeon yoo
+                            <br>Seoul National University
+                        </td>
+                        <td>
+                            <a style="text-decoration:none" href="http://mipal.snu.ac.kr/index.php/Nojun_Kwak">
+                              Nojun Kwak
+                            </a>
+                            <br>Seoul National University
+                        </td>
+                    </tr>
+                </table>
+                {mrjunoo, jayeon.yoo, nojunk} @ snu.ac.kr
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('author-row').style.maxWidth = document.getElementById("title-row").clientWidth + 'px';
+    </script>
+    <div class="container" id="main">
+        <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="https://arxiv.org/abs/2310.02751">
+                            <img src="./img/paper_image.jpg" height="60px">
+                                <h4><strong>Paper</strong></h4>
+                            </a>
+                        </li>
+                       <li>
+                           <a href="https://youtu.be/pNB3e2GyEDw?si=OnzVkKhxzvK4RTuv">
+                           <img src="./img/youtube_icon.png" height="60px">
+                               <h4><strong>Video</strong></h4>
+                           </a>
+                       </li>
+<!--                        <li>-->
+<!--                            <a href="https://storage.googleapis.com/gresearch/refraw360/ref.zip" target="_blank">-->
+<!--                            <image src="img/database_icon.png" height="60px">-->
+<!--                                <h4><strong>Shiny Dataset</strong></h4>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <a href="https://storage.googleapis.com/gresearch/refraw360/ref_real.zip" target="_blank">-->
+<!--                            <image src="img/real_database_icon.png" height="60px">-->
+<!--                                <h4><strong>Real Dataset</strong></h4>-->
+<!--                            </a>-->
+<!--                        </li>                            -->
+                        <li>
+                            <a href="https://github.com/JunHoo-Lee/SHOT" target="_blank">
+                            <image src="img/github.png" height="60px">
+                                <h4><strong>Code</strong></h4>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+
+
+<!--        <div class="row">-->
+<!--            <div class="col-md-8 col-md-offset-2">-->
+<!--                <div class="video-compare-container" id="materialsDiv">-->
+<!--                    <video class="video" id="materials" loop playsinline autoPlay muted src="video/materials_circle_mipnerf_ours.mp4" onplay="resizeAndPlay(this)"></video>-->
+<!--                    -->
+<!--                    <canvas height=0 class="videoMerge" id="materialsMerge"></canvas>-->
+<!--                </div>-->
+<!--			</div>-->
+<!--        </div>-->
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <!-- <image src="img/teaser.png" class="img-responsive" alt="overview"><br> -->
+                <p class="text-justify"> 
+                    In this paper, we hypothesize that gradient-based meta-learning (GBML) implicitly suppresses the Hessian along the optimization trajectory in the inner loop. Based on this hypothesis, we introduce an algorithm called SHOT (Suppressing the Hessian along the Optimization Trajectory) that minimizes the distance between the parameters of the target and reference models to suppress the Hessian in the inner loop. Despite dealing with high-order terms, SHOT does not increase the computational complexity of the baseline model much. It is agnostic to both the algorithm and architecture used in GBML, making it highly versatile and applicable to any GBML baseline. To validate the effectiveness of SHOT, we conduct empirical tests on standard few-shot learning tasks and qualitatively analyze its dynamics. We confirm our hypothesis empirically and demonstrate that SHOT outperforms the corresponding baseline.
+            </div>
+        </div>
+
+       <!-- <div class="row">
+           <div class="col-md-8 col-md-offset-2">
+               <h3>
+                   Video
+               </h3>
+               <div class="text-center">
+                   <div style="position:relative;padding-top:56.25%;">
+                       <iframe src="https://youtu.be/pNB3e2GyEDw?si=OnzVkKhxzvK4RTuv" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                   </div>
+               </div>
+           </div>
+       </div> -->
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Episodic Meta Learning
+                </h3>
+                <div class="text-center">
+                    <img src="./img/episodic-ml.png" width="50%">
+                </div>
+                <br>
+                <div class="text-justify">
+                    Meta-learning equips models with the ability to learn from scarce examples, akin to human learning, through episodic sampling, where models tackle a series of small, diverse tasks requiring rapid adaptation. Within each episode, two key processes unfold: the inner loop, where the model fine-tunes its parameters to the specific episode for immediate task performance, and the outer loop, where it generalizes this learning across episodes to enhance future task adaptability by updating its initial learning parameters. 
+                    <br> 
+                    Gradient Based Meta Learning (GBML), solves each episode with gradient descent. Which means, it solves episode within few optimization steps.
+                </div>
+                <br>
+                <!-- <div class="text-justify">
+                    The pdf of our mixture model formed by the component distributions above is defined as:
+                </div>
+                <br>
+                <div class="text-center">
+                    <img src="./img/mixture_2.png" width="50%">
+                </div>
+                <br>
+                <div class="text-justify">
+                    The mixture coefficient πij is derived from the density output σij as follows:
+                </div>
+                <br>
+                <div class="text-center">
+                    <img src="./img/mixture_3.png" width="50%">
+                </div> -->
+<!--                <div class="text-center">-->
+<!--                    <video id="refdir" width="40%" playsinline autoplay loop muted>-->
+<!--                        <source src="video/reflection_animation.mp4" type="video/mp4" />-->
+<!--                    </video>-->
+<!--                </div>-->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Problem formulation
+                </h3>
+                <div class="text-justify">
+                    At the start of each inner loop in GBML, the model is functionally equivalent to a random initialization point, as <i>it has no prior knowledge of the new episode.</i> This initiates a learning trajectory similar to conventional deep learning, but with a critical distinction: GBML achieves this task-specific adaptation in typically fewer than three optimization steps, in contrast to the potentially countless steps in standard deep learning settings. GBML necessitates huge movements per step due to the constraint of very few optimization steps for task adaptation. This means <i>the Hessian is dominant</i> in the optimization, while in SGD it does not consider the Hessian.
+                    <br>
+                    <br>
+                    <b>Our hypothesis: GBML suppresses the Hessian along the inner loop.</b>
+                </div>
+                <div class="text-center">
+                    <img src="./img/loss_decreases_if.png" width="80%">
+                </div>
+                <br>
+                <div class="text-justify">
+                    The equation above is the condition where the loss decreases. As SGD does not consider the Hessian, it becomes noise in the equation. However, in GBML, the Hessian is dominant in the inner loop as it moves a lot in a few steps.
+                    From this perspective, we can deduce the conclusion that every successful GBML model should have a small Hessian size along the inner loop. And we hypothesize that this is what outer loop implicitly does.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    SHOT: Suppressing the Hessian along the Optimization Trajectory
+                </h3>
+                <div class="text-center">
+                    <img src="./img/SHOT_algorithm.png" width="100%">
+                </div>
+                <div class="text-justify">
+                    Then our goal naturally becomes to explicitly suppress the Hessian along the inner loop. However, 
+                    directly suppressing the Hessian is not favorable as it is computationally expensive. We solve this 
+                    problem by observing that <b> the Hessian along the optimization trajectory</b> matters, not the Hessian itself.
+                    Which means, we only need the Hessian in the direction of the optimization trajectory, which can be reduced in first order.
+                    To do so, we provide ad-hoc measure. From the perspective of gradient flow, the model is less influenced by the Hessian
+                    if it embodies more gradient steps and smaller learning rate. Therefore, minimizing the distance between the more-Hessian-influenced model
+                    and less-Hessian-influenced model can be a measure the distortion by the Hessian. We call this measure as <b>SHOT</b>.
+                    Then, the measure becomes a simple distance between the target and reference models.
+                </div>
+                <div class="text-center">
+                    <img src="./img/SHOT_Loss.png" width="25%">
+                </div>
+                <div class="text-justify">
+                    And detailed pseudo code is as follows.
+                </div>
+                <div class="text-center">
+                    <img src="./img/SHOT_algorithm_text.png" width="100%">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Results
+                </h3>
+                <div class="text-justify">
+                    Following results show that SHOT behaves as we expected.
+                </div>
+                <div class="text-center">
+                    <img src="./img/landscape.png" width="70%">
+                </div>
+                <div class="text-center">
+                    <img src="./img/SHOT-Init.png" width="80%">
+                </div>
+                We trained the model with only SHOT loss. Which means, we did not use any target loss which aims to achieve meta-learning ability.
+                As you can see, the randomly-initizlized model fails to learn the task. It is no better than random guess. However, SHOT-initialized model
+                can perform better than random guess. The landscape explains why. The loss surface along the gradient direction is flat when we initialize 
+                model with SHOT. Therefore, we can guarentee that the loss decreases along the gradient direction.
+                <div class="text-center">
+                    <img src="./img/Shot-Indomain.png" width="70%">
+                </div>
+                <div class="text-center">
+                    <img src="./img/SHOT-CrossDomain.png" width="100%">
+                </div>
+                <div class="text-center">
+                    <img src="./img/SHOT-variousdistance.png" width="70%">
+                </div>
+                Table above shows that SHOT can boost performance of various benchmarks, in-domain and cross-domain.
+                Also, we can adopt any measure to compute the distance between the target and reference models.
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Citation
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+@InProceedings{Junhoo_2023_neurips,
+    author    = {Lee, Junhoo and Yoo, Jayeon and Kwak, Nojun},
+    title     = {SHOT: Suppressing the Hessian along the Optimization Trajectory for Gradient-Based Meta-Learning},
+    booktitle = {Proceedings of the NeurIPS 2023},
+    month     = {December},
+    year      = {2023},
+    }</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                    This work was supported by NRF grant (2021R1A2C3006659) and IITP grants (2021-0-01343, 2022-0-00953), all of which were funded by Korean Government (MSIT).
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</body></html>
