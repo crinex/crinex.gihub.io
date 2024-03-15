@@ -215,7 +215,7 @@
             <div class="container is-max-desktop">
                 <h2 class="title is-3">OSA-Net Architecture</h2>
                 <p>The structure of the model we propose is shown in the figure below.</p>
-                <img loading='lazy' src='static/images/net-archi.png' style="width: 50%;" />
+                <img loading='lazy' src='static/images/net-archi.png' style="width: 100%;" />
                 <p>
                     OSA-Net is composed of six main stages, with key blocks
                     and layers including the Stem Block, SA Block, global
@@ -241,7 +241,7 @@
                     the model's training speed and generalization ability.
                 </p>
                 <br>
-                <img loading="lazy" src="static/images/sa-structure.png" alt="human" style="width: 50%; max-width: none;" />
+                <img loading="lazy" src="static/images/sa-structure.png" alt="human" style="width: 100%; max-width: none;" />
                 <!-- <img loading="lazy" src="static/images/controlnet/controlnet_iclr.svg" alt="iclr" /> -->
             </div>
         </div>
@@ -249,10 +249,23 @@
     <section class="hero is-small">
         <div class="hero-body">
             <div class="container is-max-desktop">
-                <h2 class="title is-3">Qualitative comparison with SDM-v2.0 and SDXL-Base-1.0</h2>
-                <h2>For each prompt, we use 4 random seeds to generate images, while all models are generated with the same seed for each image.
+                <h2 class="title is-3">Quantitative comparison with related works</h2>
+                <h2>The table below shown the results of a quantitative comparison with previous related works.
                 </h2>
-                <img loading="lazy" src="static/images/sota_comparison_updated.svg" alt="comp" style="width: 100%; max-width: none;" />
+                <img loading="lazy" src="static/images/osanet-result-table.png" alt="comp" style="width: 100%; max-width: none;" />
+            </div>
+        </div>
+    </section>
+    
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Model interpretation using Grad-CAM</h2>
+                <h2>Grad-CAM is used to interpret the results of a
+                    model. Grad-CAM is one of the methodologies for visually
+                    interpreting deep learning models.
+                </h2>
+                <img loading="lazy" src="static/images/osa_cam.png" alt="comp" style="width: 100%; max-width: none;" />
             </div>
         </div>
     </section>
