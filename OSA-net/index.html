@@ -1,309 +1,315 @@
 <!DOCTYPE html>
-<html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <!-- <meta name="description" content="DESCRIPTION META TAG"> -->
+    <meta property="og:title"
+        content="OSA-Net: An Efficient Convolutional Neural Network for OSA Diagnosis Screening Tool" />
+    <!-- <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG" /> -->
+    <meta property="og:url" content="https://crinex.github.io/OSA-net/" />
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+    <!-- <meta property="og:image" content="static/images/banner.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" /> -->
+
+
+    <!-- <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+    <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG"> -->
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+    <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png"> -->
+    <!-- <meta name="twitter:card" content="summary_large_image"> -->
+    <!-- Keywords for your paper to be indexed by-->
+    <!-- <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE"> -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
 
     <title>OSA-Net</title>
+    <link rel="icon" type="image/x-icon" href="static/images/koala.png">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
 
-    <!-- <meta property="og:image" content="https://junhoo-lee.com/mixnerf/img/mixnerf_titlecard.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1783"> -->
-    <!-- <meta property="og:image:height" content="1619"> -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://crinex.github.io/pages/OSA-net">
-    <meta property="og:title" content="OSA-Net: An Efficient Convolutional Neural Network for OSA Diagnosis Screening Tool">
-    <meta property="og:description" content="In this paper, we hypothesize that gradient-based meta-learning (GBML) implicitly suppresses the Hessian along the optimization trajectory in the inner loop. Based on this hypothesis, we introduce an algorithm called SHOT (Suppressing the Hessian along the Optimization Trajectory) that minimizes the distance between the parameters of the target and reference models to suppress the Hessian in the inner loop. Despite dealing with high-order terms, SHOT does not increase the computational complexity of the baseline model much. It is agnostic to both the algorithm and architecture used in GBML, making it highly versatile and applicable to any GBML baseline. To validate the effectiveness of SHOT, we conduct empirical tests on standard few-shot learning tasks and qualitatively analyze its dynamics. We confirm our hypothesis empirically and demonstrate that SHOT outperforms the corresponding baseline. ">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="SHOT: Suppressing the Hessian along the Optimization Trajectory for Gradient-Based Meta-Learning">
-    <meta name="twitter:description" content="In this paper, we hypothesize that gradient-based meta-learning (GBML) implicitly suppresses the Hessian along the optimization trajectory in the inner loop. Based on this hypothesis, we introduce an algorithm called SHOT (Suppressing the Hessian along the Optimization Trajectory) that minimizes the distance between the parameters of the target and reference models to suppress the Hessian in the inner loop. Despite dealing with high-order terms, SHOT does not increase the computational complexity of the baseline model much. It is agnostic to both the algorithm and architecture used in GBML, making it highly versatile and applicable to any GBML baseline. To validate the effectiveness of SHOT, we conduct empirical tests on standard few-shot learning tasks and qualitatively analyze its dynamics. We confirm our hypothesis empirically and demonstrate that SHOT outperforms the corresponding baseline. ">
-    <!-- <meta name="twitter:image" content="https://junhoo-lee.com/SHOT/img/SHOT_titlecard.png"> -->
-
-
-    <!-- mirror: F0%9F%AA%9E&lt -->
-    <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;📊&lt;/text&gt;&lt;/svg&gt;">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/codemirror.min.css">
-    <link rel="stylesheet" href="css/app.css">
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/codemirror.min.js"></script>
-    <script src="js/clipboard.min.js"></script>
-    <script src="js/video_comparison.js"></script>
-    <script src="js/app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/index.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.1.1/gradio.js"></script>
 </head>
 
 <body>
-    <div class="container" id="header" style="text-align: center; margin: auto;">
-        <div class="row" id="title-row" style="max-width: 100%; margin: 0 auto; display: inline-block">
-            <h2 class="col-md-12 text-center" id="title">
-                <b>OSA-Net</b>: An Efficient Convolutional Neural Network for OSA Diagnosis Screening Tool
-                <br>
-                <small>
-                    IPTA 2023
-                </small>
-            </h2>
-        </div>
-        <div class="row" id="author-row" style="margin:0 auto;">
-            <div class="col-md-12 text-center" style="display: table; margin:1 auto">
-                <table class="author-table" id="author-table">
-                    <tr>
-                        <td>
-                            <a style="text-decoration:none" href="https://junhoo-lee.com/">
-                              June-Young Park
-                            </a>
-                            <br>Graduate School of Ajou University
-                        </td>
-                        <td>
-                            Hye-Rim Shin
-                            <br>Dankook University Hospital
-                        </td>
-                        <td>
-                            <a style="text-decoration:none" href="http://mipal.snu.ac.kr/index.php/Nojun_Kwak">
-                              Tae-Joon Kim
-                            </a>
-                            <br>Ajou University School of Medicine
-                        </td>
-                    </tr>
-                </table>
-                {mrjunoo, jayeon.yoo, nojunk} @ snu.ac.kr
-            </div>
-        </div>
-    </div>
-    <script>
-        document.getElementById('author-row').style.maxWidth = document.getElementById("title-row").clientWidth + 'px';
-    </script>
-    <div class="container" id="main">
-        <div class="row">
-                <div class="col-sm-6 col-sm-offset-3 text-center">
-                    <ul class="nav nav-pills nav-justified">
-                        <li>
-                            <a href="https://arxiv.org/abs/2310.02751">
-                            <img src="./img/paper_image.jpg" height="60px">
-                                <h4><strong>Paper</strong></h4>
-                            </a>
-                        </li>
-                       <li>
-                           <a href="https://youtu.be/pNB3e2GyEDw?si=OnzVkKhxzvK4RTuv">
-                           <img src="./img/youtube_icon.png" height="60px">
-                               <h4><strong>Video</strong></h4>
-                           </a>
-                       </li>
-<!--                        <li>-->
-<!--                            <a href="https://storage.googleapis.com/gresearch/refraw360/ref.zip" target="_blank">-->
-<!--                            <image src="img/database_icon.png" height="60px">-->
-<!--                                <h4><strong>Shiny Dataset</strong></h4>-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="https://storage.googleapis.com/gresearch/refraw360/ref_real.zip" target="_blank">-->
-<!--                            <image src="img/real_database_icon.png" height="60px">-->
-<!--                                <h4><strong>Real Dataset</strong></h4>-->
-<!--                            </a>-->
-<!--                        </li>                            -->
-                        <li>
-                            <a href="https://github.com/JunHoo-Lee/SHOT" target="_blank">
-                            <image src="img/github.png" height="60px">
-                                <h4><strong>Code</strong></h4>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-        </div>
 
 
+    <section class="hero banner">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-2 publication-title"></i>OSA-Net<br />
+                            :An Efficient Convolutional Neural Network for OSA Diagnosis Screening Tool</h1>
+                        <div class="is-size-5 publication-authors">
+                            <!-- Paper authors -->
+                            <span class="author-block">
+                                <a href="https://aunal.org/people/jypark" target="_blank">June-Young Park</a><sup style="color:#aa0404;">1 </sup><sup style="color:#1b5dd7;">2</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://www.dkuh.co.kr/html_2016/03/01_02.php?idx=456150&url=%2Fhtml_2016%2F03%2F01.php&drword=%EC%8B%A0%ED%98%9C%EB%A6%BC" target="_blank">Hye-Rim Shin</a><sup style="color:#aa0404;">1</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://aunal.org/people/tjkim" target="_blank">Tae-Joon Kim</a><sup style="color:#ecaa2e;">3</sup>,</span>
+                        </div>
 
-<!--        <div class="row">-->
-<!--            <div class="col-md-8 col-md-offset-2">-->
-<!--                <div class="video-compare-container" id="materialsDiv">-->
-<!--                    <video class="video" id="materials" loop playsinline autoPlay muted src="video/materials_circle_mipnerf_ours.mp4" onplay="resizeAndPlay(this)"></video>-->
-<!--                    -->
-<!--                    <canvas height=0 class="videoMerge" id="materialsMerge"></canvas>-->
-<!--                </div>-->
-<!--			</div>-->
-<!--        </div>-->
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup style="color:#aa0404;">1</sup>Graduate School of Medicine Ajou University,</span>
+                            <span class="author-block"><sup style="color:#1b5dd7;">2</sup>Dankook University Hospital,</span>
+                            <span class="author-block"><sup style="color:#ecaa2e;">3</sup>Ajou University School of Medicine</span>
+                        </div>
+                        
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <span class="link-block">
+                                    <a href="https://ieeexplore.ieee.org/document/10320072" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
 
 
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Abstract
-                </h3>
-                <!-- <image src="img/teaser.png" class="img-responsive" alt="overview"><br> -->
-                <p class="text-justify"> 
-                    In this paper, we hypothesize that gradient-based meta-learning (GBML) implicitly suppresses the Hessian along the optimization trajectory in the inner loop. Based on this hypothesis, we introduce an algorithm called SHOT (Suppressing the Hessian along the Optimization Trajectory) that minimizes the distance between the parameters of the target and reference models to suppress the Hessian in the inner loop. Despite dealing with high-order terms, SHOT does not increase the computational complexity of the baseline model much. It is agnostic to both the algorithm and architecture used in GBML, making it highly versatile and applicable to any GBML baseline. To validate the effectiveness of SHOT, we conduct empirical tests on standard few-shot learning tasks and qualitatively analyze its dynamics. We confirm our hypothesis empirically and demonstrate that SHOT outperforms the corresponding baseline.
-            </div>
-        </div>
-
-       <!-- <div class="row">
-           <div class="col-md-8 col-md-offset-2">
-               <h3>
-                   Video
-               </h3>
-               <div class="text-center">
-                   <div style="position:relative;padding-top:56.25%;">
-                       <iframe src="https://youtu.be/pNB3e2GyEDw?si=OnzVkKhxzvK4RTuv" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
-                   </div>
-               </div>
-           </div>
-       </div> -->
-
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Episodic Meta Learning
-                </h3>
-                <div class="text-center">
-                    <img src="./img/episodic-ml.png" width="50%">
-                </div>
-                <br>
-                <div class="text-justify">
-                    Meta-learning equips models with the ability to learn from scarce examples, akin to human learning, through episodic sampling, where models tackle a series of small, diverse tasks requiring rapid adaptation. Within each episode, two key processes unfold: the inner loop, where the model fine-tunes its parameters to the specific episode for immediate task performance, and the outer loop, where it generalizes this learning across episodes to enhance future task adaptability by updating its initial learning parameters. 
-                    <br> 
-                    Gradient Based Meta Learning (GBML), solves each episode with gradient descent. Which means, it solves episode within few optimization steps.
-                </div>
-                <br>
-                <!-- <div class="text-justify">
-                    The pdf of our mixture model formed by the component distributions above is defined as:
-                </div>
-                <br>
-                <div class="text-center">
-                    <img src="./img/mixture_2.png" width="50%">
-                </div>
-                <br>
-                <div class="text-justify">
-                    The mixture coefficient πij is derived from the density output σij as follows:
-                </div>
-                <br>
-                <div class="text-center">
-                    <img src="./img/mixture_3.png" width="50%">
-                </div> -->
-<!--                <div class="text-center">-->
-<!--                    <video id="refdir" width="40%" playsinline autoplay loop muted>-->
-<!--                        <source src="video/reflection_animation.mp4" type="video/mp4" />-->
-<!--                    </video>-->
-<!--                </div>-->
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Problem formulation
-                </h3>
-                <div class="text-justify">
-                    At the start of each inner loop in GBML, the model is functionally equivalent to a random initialization point, as <i>it has no prior knowledge of the new episode.</i> This initiates a learning trajectory similar to conventional deep learning, but with a critical distinction: GBML achieves this task-specific adaptation in typically fewer than three optimization steps, in contrast to the potentially countless steps in standard deep learning settings. GBML necessitates huge movements per step due to the constraint of very few optimization steps for task adaptation. This means <i>the Hessian is dominant</i> in the optimization, while in SGD it does not consider the Hessian.
-                    <br>
-                    <br>
-                    <b>Our hypothesis: GBML suppresses the Hessian along the inner loop.</b>
-                </div>
-                <div class="text-center">
-                    <img src="./img/loss_decreases_if.png" width="80%">
-                </div>
-                <br>
-                <div class="text-justify">
-                    The equation above is the condition where the loss decreases. As SGD does not consider the Hessian, it becomes noise in the equation. However, in GBML, the Hessian is dominant in the inner loop as it moves a lot in a few steps.
-                    From this perspective, we can deduce the conclusion that every successful GBML model should have a small Hessian size along the inner loop. And we hypothesize that this is what outer loop implicitly does.
+                                <!-- <span class="link-block">
+                                    <a href="https://huggingface.co/docs/diffusers/main/en/api/pipelines/pixart" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">🧨</span>
+                                        <span>Diffusers</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://huggingface.co/spaces/PixArt-alpha/PixArt-alpha" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">🤗</span>
+                                        <span>HF Demo</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://openxlab.org.cn/apps/detail/PixArt-alpha/PixArt-alpha" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">X</span>
+                                        <span>OpenXLab Demo</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/abs/2310.00426" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>arXiv</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://discord.gg/hWT7caau" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-discord"></i>
+                                        </span>
+                                        <span>Discord</span>
+                                    </a>
+                                </span> -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    SHOT: Suppressing the Hessian along the Optimization Trajectory
-                </h3>
-                <div class="text-center">
-                    <img src="./img/SHOT_algorithm.png" width="100%">
-                </div>
-                <div class="text-justify">
-                    Then our goal naturally becomes to explicitly suppress the Hessian along the inner loop. However, 
-                    directly suppressing the Hessian is not favorable as it is computationally expensive. We solve this 
-                    problem by observing that <b> the Hessian along the optimization trajectory</b> matters, not the Hessian itself.
-                    Which means, we only need the Hessian in the direction of the optimization trajectory, which can be reduced in first order.
-                    To do so, we provide ad-hoc measure. From the perspective of gradient flow, the model is less influenced by the Hessian
-                    if it embodies more gradient steps and smaller learning rate. Therefore, minimizing the distance between the more-Hessian-influenced model
-                    and less-Hessian-influenced model can be a measure the distortion by the Hessian. We call this measure as <b>SHOT</b>.
-                    Then, the measure becomes a simple distance between the target and reference models.
-                </div>
-                <div class="text-center">
-                    <img src="./img/SHOT_Loss.png" width="25%">
-                </div>
-                <div class="text-justify">
-                    And detailed pseudo code is as follows.
-                </div>
-                <div class="text-center">
-                    <img src="./img/SHOT_algorithm_text.png" width="100%">
-                </div>
-
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Results
-                </h3>
-                <div class="text-justify">
-                    Following results show that SHOT behaves as we expected.
-                </div>
-                <div class="text-center">
-                    <img src="./img/landscape.png" width="70%">
-                </div>
-                <div class="text-center">
-                    <img src="./img/SHOT-Init.png" width="80%">
-                </div>
-                We trained the model with only SHOT loss. Which means, we did not use any target loss which aims to achieve meta-learning ability.
-                As you can see, the randomly-initizlized model fails to learn the task. It is no better than random guess. However, SHOT-initialized model
-                can perform better than random guess. The landscape explains why. The loss surface along the gradient direction is flat when we initialize 
-                model with SHOT. Therefore, we can guarentee that the loss decreases along the gradient direction.
-                <div class="text-center">
-                    <img src="./img/Shot-Indomain.png" width="70%">
-                </div>
-                <div class="text-center">
-                    <img src="./img/SHOT-CrossDomain.png" width="100%">
-                </div>
-                <div class="text-center">
-                    <img src="./img/SHOT-variousdistance.png" width="70%">
-                </div>
-                Table above shows that SHOT can boost performance of various benchmarks, in-domain and cross-domain.
-                Also, we can adopt any measure to compute the distance between the target and reference models.
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Citation
-                </h3>
-                <div class="form-group col-md-10 col-md-offset-1">
-                    <textarea id="bibtex" class="form-control" readonly>
-@InProceedings{Junhoo_2023_neurips,
-    author    = {Lee, Junhoo and Yoo, Jayeon and Kwak, Nojun},
-    title     = {SHOT: Suppressing the Hessian along the Optimization Trajectory for Gradient-Based Meta-Learning},
-    booktitle = {Proceedings of the NeurIPS 2023},
-    month     = {December},
-    year      = {2023},
-    }</textarea>
+    <!-- Image carousel -->
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container">
+                <div id="results-carousel" class="carousel results-carousel">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="static/images/carousel/teaser-1.png" alt="carousel1" />
+                        </div>
+                        <div class="card-content has-text-centered">Portrait photo of a standing girl, photograph, golden hair, depth of field, moody light, golden hour, centered, extremely detailed, award winning photography, realistic.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="static/images/carousel/teaser-2.png" alt="carousel2" />
+                        </div>
+                        <div class="card-content has-text-centered">Professional portrait photo of an anthropomorphic cat wearing fancy gentleman hat and jacket walking in autumn forest.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="static/images/carousel/teaser-3.png" alt="carousel3" />
+                        </div>
+                        <div class="card-content has-text-centered">A blue haired girl, with blowing bubbles, with a sophisticated intellectual style, anime, dark, cold color.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="static/images/carousel/teaser-4.png" alt="carousel4" />
+                        </div>
+                        <div class="card-content has-text-centered">Cute toy owl made of suede, geometric accurate, relief on skin, plastic relief surface of body, intricate details, cinematic.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="static/images/carousel/teaser-5.png" alt="carousel5" />
+                        </div>
+                        <div class="card-content has-text-centered">Long-exposure night photography of a starry sky over a mountain range, with light trails, high detail.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="static/images/carousel/teaser-6.png" alt="carousel6" />
+                        </div>
+                        <div class="card-content has-text-centered">Cute small dog sitting in a movie theater watching a movie, unreal engine, cozy indoor lighting, artstation, detailed, digital painting, cinematic, character design by pixar, hyperrealistic, octane render.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="static/images/carousel/teaser-7.png" alt="carousel7" />
+                        </div>
+                        <div class="card-content has-text-centered">Renaissance-style portrait of an astronaut in space, detailed starry background, reflective helmet.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="static/images/carousel/teaser-8.png" alt="carousel8" />
+                        </div>
+                        <div class="card-content has-text-centered">Albert Einstein in a surrealist Cyberpunk 2077 world, hyper-realistic.</div>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
+    <!-- End image carousel -->
 
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Acknowledgements
-                </h3>
-                <p class="text-justify">
-                    This work was supported by NRF grant (2021R1A2C3006659) and IITP grants (2021-0-01343, 2022-0-00953), all of which were funded by Korean Government (MSIT).
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Obstructive sleep apnea (OSA) has a high prevalence worldwide, particularly among adults and the population with comorbidities. Adult men have a higher incidence rate and approximately 15-30% prevalence, and OSA is associated with other diseases such as obesity, hypertension, and diabetes. Polysomnography is essential for diagnosing OSA, but discomfort and overnight testing are practical difficulties. Therefore, several questionnaires, such as the STOP-BANG and Berlin questionnaire, have been developed for initial screening of OSA, although their use is limited due to their low accuracy. One of the pathophysiology of OSA is related to craniofacial anatomy, and several previous studies have investigated facial anatomy using 2D or 3D photographs with a small number of patients, but practical application for screening and diagnosing OSA has not been attempted yet. Therefore, our research aims to screen OSA and stratify its severity with feasible 2D photographs and a big dataset using a novel deep learning algorithm. We developed a new CNN-based algorithm called OSA-Net, which diagnoses OSA patients using information on facial anatomical abnormalities by ready-to-use photographs. Facial pictures of 900 patients who underwent polysomnography were used as a dataset for model training. The results of our algorithm showed a high diagnostic accuracy over 85% for classifying OSA severity into normal, mild, moderate, and severe degrees. Furthermore, we used Grad-CAM to verify the accuracy of our model, and the results showed that our model accurately recognizes facial contours. This study demonstrates the potential of using artificial intelligence with image big data as a new OSA screening tool.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End paper abstract -->
+    
+    <!-- Start demo page -->
+    <!-- <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-centered has-text-centered">
+                <h2 class="title is-3">Online Demo</h2>
+                <gradio-app src="https://pixart-alpha-pixart-alpha.hf.space" style="display: flex; justify-content: center;"></gradio-app>
+            </div>
+        </div>
+    </section> -->
+    <!-- End demo page -->
+
+
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Latency and memory usage comparison on different GPUs.</h2>
+                <p>We measure the inference time of SDM-v2.0 with 768x768 resolution and the other models with 1024x1024 using a variety of consumer-grade GPUs: NVIDIA 3060Ti (8GB), 2080Ti (11GB), and 4090 (24GB). We use 25 denoising steps and FP16/FP32 precisions. OOM means Out-of-Memory. Note that SDXL-Base cannot operate in the 8GB-GPU.
                 </p>
+                <br>
+                <img loading="lazy" src="static/images/latency_gpu.svg" alt="efficiency" />
             </div>
         </div>
-    </div>
+    </section>
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Qualitative comparison</h2>
+                <p>We follow the official inference setups of each model (<a
+                    href="https://huggingface.co/stabilityai/stable-diffusion-2"
+                    target="_blank">SDM-v2.0</a> and <a
+                    href="https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0"
+                    target="_blank">SDXL-Base-1.0</a>) in the huggingface repository. 
+                    Specifically, SDM-v2.0 is set to generate with DDIM scheduler with 25 steps and SDXL and ours are set to use Euler discrete scheduler with 25 steps. 
+                    And we set all models to use the classifier-free guidance with 7.5.
+                    Except DALLE-2, we generate all images with FP16 precision.
+                For DALLE-2, we get generated images via OpenAI API.
+                <br>
+                </p>
+                <img loading="lazy" src="static/images/sota_human_updated.svg" alt="human" style="width: 100%; max-width: none;" />
+                <img loading="lazy" src="static/images/sota_3d-art_updated.svg" alt="3d" style="width: 100%; max-width: none;" />
+                <img loading="lazy" src="static/images/sota_painting_updated.svg" alt="painting" style="width: 100%; max-width: none;" />
+                <!-- <img loading="lazy" src="static/images/controlnet/controlnet_iclr.svg" alt="iclr" /> -->
+            </div>
+        </div>
+    </section>
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Qualitative comparison with SDM-v2.0 and SDXL-Base-1.0</h2>
+                <h2>For each prompt, we use 4 random seeds to generate images, while all models are generated with the same seed for each image.
+                </h2>
+                <img loading="lazy" src="static/images/sota_comparison_updated.svg" alt="comp" style="width: 100%; max-width: none;" />
+            </div>
+        </div>
+    </section>
 
 
-</body></html>
+    <!--BibTex citation -->
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>@misc{Lee@koala,
+    title={KOALA: Self-Attention Matters in Knowledge Distillation of Latent Diffusion Models for Memory-Efficient and Fast Image Synthesis}, 
+    author={Youngwan Lee and Kwanyong Park and Yoorhim Cho and Yong-Ju Lee and Sung Ju Hwang},
+    year={2023},
+    eprint={2312.04005},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}</code></pre>
+        </div>
+    </section>
+    <!--End BibTex citation -->
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+                        <p>
+                            This page was built using the <a
+                                href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                                href="https://nerfies.github.io" target="_blank">Nerfies</a> and  <a
+                                href="https://pixart-alpha.github.io/" target="_blank">PixArt-alpha</a> project pages.
+                            You are free to borrow the of this website, we just ask that you link back to this page in
+                            the footer. <br> This website is licensed under a <a rel="license"
+                                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                                Commons Attribution-ShareAlike 4.0 International License</a>.
+                        </p>
+                        <p class="has-text-centered">Total clicks: <span id="busuanzi_value_site_pv"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+</body>
+
+</html>
