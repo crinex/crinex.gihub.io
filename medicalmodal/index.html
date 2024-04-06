@@ -1,1 +1,255 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <!-- <meta name="description" content="DESCRIPTION META TAG"> -->
+    <!-- <meta property="og:title"
+        content="Skip-GANomaly++: Skip Connections and Residual Blocks for Anomaly Detection" /> -->
+    <!-- <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG" /> -->
+    <!-- <meta property="og:url" content="https://crinex.github.io/pages/skipganpp/" /> -->
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+    <!-- <meta property="og:image" content="static/images/banner.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" /> -->
+
+
+    <!-- <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+    <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG"> -->
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+    <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png"> -->
+    <!-- <meta name="twitter:card" content="summary_large_image"> -->
+    <!-- Keywords for your paper to be indexed by-->
+    <!-- <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE"> -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
+
+    <title>Multimodal MLP Model for Myocardial Infarction Prediction</title>
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/index.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.1.1/gradio.js"></script>
+</head>
+
+<body>
+
+
+    <section class="hero banner">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-2 publication-title">Multimodal MLP Model for Myocardial Infarction Prediction<br />
+                            :Development of a Multimodal MLP Model for Myocardial Infarction Prediction</h1>
+                        <div class="is-size-5 publication-authors">
+                            <!-- Paper authors -->
+                            <span class="author-block">
+                                <a href="https://aunal.org/people/jypark" target="_blank">†June-Young Park</a><sup style="color:#aa0404;">1 </sup>,</span>
+                            <span class="author-block">
+                                <a href="https://www.dkuh.co.kr/html_2016/03/01_02.php?idx=456150&url=%2Fhtml_2016%2F03%2F01.php&drword=%EC%8B%A0%ED%98%9C%EB%A6%BC" target="_blank">Yu-Mi Lee</a><sup style="color:#439b08;">2</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://www.dkuh.co.kr/html_2016/03/01_02.php?idx=456150&url=%2Fhtml_2016%2F03%2F01.php&drword=%EC%8B%A0%ED%98%9C%EB%A6%BC" target="_blank">Jee-Eun Kim</a><sup style="color:#ecaa2e;">3</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://www.dkuh.co.kr/html_2016/03/01_02.php?idx=456150&url=%2Fhtml_2016%2F03%2F01.php&drword=%EC%8B%A0%ED%98%9C%EB%A6%BC" target="_blank">Seong-Jae Park</a><sup style="color:#ecaa2e;">3</sup>,</span>
+                            <!-- <span class="author-block">
+                                <a href="https://aunal.org/people/tjkim" target="_blank">Tae-Joon Kim</a><sup style="color:#ecaa2e;">3</sup></span> -->
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup style="color:#aa0404;">1</sup>Graduate School of Medicine Ajou University,</span>
+                            <span class="author-block"><sup style="color:#439b08;">2</sup>Ewha Womans University,</span>
+                            <span class="author-block"><sup style="color:#ecaa2e;">3</sup>Hongik University </span>
+                        </div>
+                        †{crinexk@gmail.com}
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <span class="link-block">
+                                    <a href="https://ieeexplore.ieee.org/document/10320072" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span><i>arxiv</i></span>
+                    
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image carousel -->
+    <!-- End image carousel -->
+
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Myocardial infarction prediction is a critical task across various medical fields. Fundamentally, myocardial infarction prediction models provide methods to identify abnormal signals or measurements that do not align with expected healthy patterns.
+                            Such predictions play an essential role in early diagnosis and timely initiation of treatment. In modern medicine, a multimodal approach is crucial for predicting and diagnosing complex diseases like myocardial infarction.
+                            Therefore, we propose an MLP Mixer model that utilizes multimodal data, integrating ECG data, echo data, and clinical notes to enhance the accuracy of myocardial infarction predictions. The proposed model effectively combines information from different data sources,
+                            offering more efficient and improved performance compared to conventional myocardial infarction prediction models. The performance of the proposed model was evaluated through comparative experiments.
+                            Experimental results confirmed that our model demonstrated superior performance across various test cases compared to previous models.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End paper abstract -->
+    
+    <!-- Start demo page -->
+    <!-- <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-centered has-text-centered">
+                <h2 class="title is-3">Online Demo</h2>
+                <gradio-app src="https://pixart-alpha-pixart-alpha.hf.space" style="display: flex; justify-content: center;"></gradio-app>
+            </div>
+        </div>
+    </section> -->
+    <!-- End demo page -->
+
+
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Dataset</h2>
+                <p>
+                    For the crucial task of myocardial infarction prediction, we harnessed the MIMIC-IV dataset, a substantial public database employed for medical research and education. Originating from an extensive U.S. hospital's ICU, this dataset encompasses comprehensive medical details of patients, with access governed by approval due to the sensitive nature of the information. It serves as an ideal resource for intricate medical data analysis, containing a variety of data types, including biometric signals, medical records, diagnostic information, treatment procedures, and clinical notes.
+
+Within the MIMIC-IV dataset, subsets like clinical notes, ECG, and echo data provide:
+
+Clinical notes documenting the medical conditions and treatments as written by healthcare professionals, vital for extracting significant insights through Natural Language Processing (NLP) techniques.
+ECG data, the recordings of cardiac electrical activity, crucial for diagnosing heart conditions such as arrhythmias and myocardial infarction, offering a temporal dimension to the signals related to heartbeats.
+Echo data, echocardiograms used to assess the heart's structure and function, which provide essential diagnostics and monitoring for heart diseases.
+                </p>
+                <br>
+                <!-- <img loading="lazy" src="static/images/dataset.png" /> -->
+            </div>
+        </div>
+    </section>
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Model</h2>
+                <!-- <p>The structure of the model we propose is shown in the figure below.</p> -->
+                <img loading='lazy' src='static/images/neuralnet.png' style="width: 75%;" />
+                <p>
+                    Traditional approaches to handling multi-modality, including image and signal data processing, have progressed towards increasing a model's capacity, which refers to the number of learning parameters within a model.
+                     For any regression problem, enhancing the model's capacity allows for more accurate predictions when addressing complex problems.
+                     This is analogous to when a simple linear function model fails to predict accurately for complex issues, and a more complex cubic function model yields results that are closer to the real value distribution.
+                     However, expanding the capacity necessitates training a larger number of parameters, leading to longer training times.
+                      Additionally, as each parameter transforms the input tensor, the computational cost required for operations also increases. 
+                    As a result of this direction, recent models have grown larger and heavier, demanding significant computing resources to deliver high performance.
+                    Neural networks have the capability to approximate arbitrary functions through inputs and outputs.
+                     Indeed, neural networks are a class of functions with exceptional expressiveness, capable of learning random input-output mappings with 100% accuracy.
+                     Nonetheless, despite this capability, neural networks tend to favor low-frequency functions that are globally consistent and lack local variations, that is, smooth functions.
+                </p>
+                    <img loading='lazy' src='static/images/spectralbias.png' style="width: 75%;" />
+
+                    (a): When all frequency components of the target function have the same amplitude / (b): When the high-frequency components of the target function have greater amplitudes
+                    From experiments conducted under these two scenarios, it has been observed that neural networks prioritize learning lower frequencies during the training process, even in cases where higher frequencies possess greater amplitudes.
+                    In simple terms, this implies that over-parameterized neural networks prioritize learning simple patterns that generalize across data samples, leading to a situation where the learning of more specific information is not effectively performed.
+                <br>
+                <!-- <img loading="lazy" src="static/images/sa-structure.png" alt="human" style="width: 100%; max-width: none;" /> -->
+                <!-- <img loading="lazy" src="static/images/controlnet/controlnet_iclr.svg" alt="iclr" /> -->
+            </div>
+        </div>
+    </section>
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Our Architecture</h2>
+                <p>The structure of the model we propose is shown in the figure below.</p>
+                </h2>
+                <img loading="lazy" src="static/images/architecture.png" alt="comp" style="width: 100%; max-width: none;" />
+                Our proposed MLP Mixer model introduces a new dimension by incorporating positional encoding, building upon the existing MLP-Mixer model. 
+                Traditional neural networks tend to focus on learning low-frequency information, encountering a problem known as spectral bias where high-frequency information is less effectively learned.
+                 By integrating positional encoding, we aimed to address this issue, offering a solution that also enhances the learning of high-frequency information. 
+                 We conducted experiments using the a forementioned MIMIC IV dataset and established a control group for comparison. 
+                Furthermore, to compare with existing neural networks, we conducted comparative experiments using ResNet50.
+            </div>
+        </div>
+    </section>
+    
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">result</h2>
+                <h2>Here are the results of our experiment.
+                     In order, they correspond to ECG, clinical, and echo data.
+                </h2>
+                <img loading="lazy" src="static/images/result.PNG" alt="comp" style="width: 100%; max-width: none;" />
+            </div>
+        </div>
+    </section>
+
+
+    <!--BibTex citation -->
+    <!-- <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>@misc{Lee@koala,
+    title={KOALA: Self-Attention Matters in Knowledge Distillation of Latent Diffusion Models for Memory-Efficient and Fast Image Synthesis}, 
+    author={Youngwan Lee and Kwanyong Park and Yoorhim Cho and Yong-Ju Lee and Sung Ju Hwang},
+    year={2023},
+    eprint={2312.04005},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}</code></pre>
+        </div>
+    </section> -->
+    <!--End BibTex citation -->
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+                        <p>
+                            This page was built using the <a
+                                href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                                href="https://nerfies.github.io" target="_blank">Nerfies</a> and  <a
+                                href="https://pixart-alpha.github.io/" target="_blank">PixArt-alpha</a> project pages.
+                            You are free to borrow the of this website, we just ask that you link back to this page in
+                            the footer. <br> This website is licensed under a <a rel="license"
+                                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                                Commons Attribution-ShareAlike 4.0 International License</a>.
+                        </p>
+                        <p class="has-text-centered">Total clicks: <span id="busuanzi_value_site_pv"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+</body>
+
+</html>
