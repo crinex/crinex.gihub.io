@@ -1,1 +1,299 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <!-- <meta name="description" content="DESCRIPTION META TAG"> -->
+    <!-- <meta property="og:title"
+        content="Skip-GANomaly++: Skip Connections and Residual Blocks for Anomaly Detection" /> -->
+    <!-- <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG" /> -->
+    <!-- <meta property="og:url" content="https://crinex.github.io/pages/skipganpp/" /> -->
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+    <!-- <meta property="og:image" content="static/images/banner.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" /> -->
+
+
+    <!-- <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+    <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG"> -->
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+    <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png"> -->
+    <!-- <meta name="twitter:card" content="summary_large_image"> -->
+    <!-- Keywords for your paper to be indexed by-->
+    <!-- <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE"> -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
+
+    <title>Vision Mamba</title>
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/index.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.1.1/gradio.js"></script>
+</head>
+
+<body>
+
+
+    <section class="hero banner">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-2 publication-title">Vision Mamba와 ECG를 활용한<br />
+                            심장 질환 환자 분류</h1>
+                        <div class="is-size-5 publication-authors">
+                            <!-- Paper authors -->
+                            <span class="author-block">
+                                Da-Woon Kwon</a><sup style="color:#aa0404;">1 </sup>,</span>
+                            <span class="author-block">
+                                Seo-Yeon Oh</a><sup style="color:#439b08;">2</sup>,</span>
+                            <span class="author-block">
+                                Ye-Hyun Ko</a><sup style="color:#ecaa2e;">3</sup>,</span>
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup style="color:#aa0404;">1</sup>University of Ulsan,</span>
+                            <span class="author-block"><sup style="color:#439b08;">2</sup>Seoul Women's University,</span>
+                            <span class="author-block"><sup style="color:#ecaa2e;">3</sup>Soongsil University</span>
+                        </div>
+                        <!--
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <span class="link-block">
+                                    <a href="https://ieeexplore.ieee.org/document/10320072" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span><i>arxiv</i></span>
+                    
+                                    </a>
+                                </span>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image carousel -->
+    <div style="display: flex; justify-content: center;">
+        <img loading='lazy' src='static/images/mambaECG.webp' style="width: 35%; height: auto;" />
+    </div>
+    <!-- End image carousel -->
+
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            <span style="font-size: 24px; font-weight: bold;">본</span> 프로젝트는 기존 Transformer 모델의 한계를 극복하기 위한 'Vision Mamba' 아키텍처를 소개하고, 이를 심전도(ECG) 데이터에 적용하여 심장 질환 환자를 classification한다. Transformer는 많은 수의 파라미터를 가지고 있으며, Self-Attention이 시간 복잡도 면에서 비효율적이라는 문제가 있다. 
+                            따라서 SSM을 통해  ‘state’라는 개념을 도입하는 새로운 recurrent 메커니즘 제안하고, S4를 통해 이산화(Discretization, ZOH)와 HiPPO 매트릭스를 활용한 AI 모델을 개발한다. 다음으로 S6을 통해 Mamba의 핵심인  Selective Scan 알고리즘을 소개하며, 이를 Gated NLP와 H3와 결합하여 Mamba 블록을 구성, Mamba 아키텍처를 완성한다.
+                            우리의 연구 핵심은 연속적 특성을 가진 ECG 데이터를 Vision Mamba 아키텍처에 적용하여 분류하는 것이다. 이미지 데이터를 시퀀스 임베딩으로 변환하고,  이미지를 패치로 분할하여 patch와 position 임베딩을 결합한 최종 input 임베딩을 생성한다. 12개 채널의 ECG 데이터를 이산 벡터로 표현하고 연결하여, 시간 단계에 맞춰 패치로 분할함으로써 Vision Mamba의 input으로 사용하여 학습한다.
+                            우리의 결과 및 추후 분석은 Vision Mamba가 ECG 데이터를 행렬(이미지) 관점에서 해석하는 능력을 보여주고, Mamba 아키텍처가 AI 분야에서 주목할만한 발전이 될 수 있음을 강조하고자 한다.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End paper abstract -->
+    
+    <!-- Start demo page -->
+    <!-- <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-centered has-text-centered">
+                <h2 class="title is-3">Online Demo</h2>
+                <gradio-app src="https://pixart-alpha-pixart-alpha.hf.space" style="display: flex; justify-content: center;"></gradio-app>
+            </div>
+        </div>
+    </section> -->
+    <!-- End demo page -->
+
+
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Transformer의 문제점</h2>
+                <p>
+                    <strong>1. 파라미터의 수가 많다</strong><br>
+                    파라미터 수를 줄이는 것은 파라미터를 훼손하는 것이기 때문에 파라미터가 표현하는 수의 범위를 줄이는 양자화(Quantization) 연구가 진행되어 오고 있다. 양자화는 예를 들어 32bit 범위의 파라미터를 더 적은 1bit로 표현하여 모델의 성능을 훼손시키지 않는 선에서의 기술을 의미한다.<br>
+
+                    <strong>2. self-Attention의 비효율적인 시간복잡도</strong><br>
+                    6개의 시퀀스를 가진 하나의 토큰이 있다고 가정할 때 자신과 똑같은 자식의 시퀀스에 대해 각 토큰이 시퀀스의 길이만큼 탐색을 하며 어떤 토큰이 중요한 정보를 담고 있는지 판단한다. 이러한 과정에서 O(n^2) 만큼의 복잡도가 발생한다. 즉, inference를 수행하면 너무 비효율적이다.<br><br>
+
+                    Transformer은 기존의 recurrent 메커니즘을 해결하는 기술이었고, 작년 11월 새로운 recurrent 메커니즘을 사용하는  <span style="color: rgb(0, 0, 153);">Mamba</span>가 공개되었다. Mamba는 아래 표와 같이 transformer보다 엄청나게  <span style="color: rgb(0, 0, 153);">빠른 inference</span>를 수행하며,  <span style="color: rgb(0, 0, 153);">performance</span> 측면에서도 transformer에 준하거나 오히려 뛰어넘는 것을 확인할 수 있다.
+                </p>
+                <br>
+                <div class="image-container" style="display: flex; justify-content: center;">
+                    <img loading="lazy" src="static/images/inference.png" style="margin-right: 10px; max-width: 50%; height: auto;" />
+                    <img loading="lazy" src="static/images/performance.png" style="max-width: 50%; height: auto;" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="hero is-light">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Mamba</h2>
+                <h2 class="title is-4">History of Mamba</h2>
+                <div style="display: flex; justify-content: center;">
+                    <img loading='lazy' src='static/images/history.png' style="width: 50%; height: auto;" />
+                </div>   
+                <br><br>             
+                <h3 class="title is-4">SSM (State Space Model)</h3>
+                <p>
+                    상태 공간 모델은 <span style="color: rgb(0, 0, 153);">시간에 따라 변하는 과정을 모델링하기 위한 프레임워크</span>로 <span style="color: rgb(0, 0, 153);">시스템의 ‘상태’와 이 상태가 시간에 따라 어떻게 변화하는지를 기술</span>한다. 일반적인 모델의 경우 input output에 대해 고려한다면, ssm은 state라는 개념 도입하여 input, output, <span style="color: rgb(0, 0, 153);">state</span>에 대해 고려한다. 이 때, <b>state</b>는 어떠한 system을 설명하기 위한 최소 개수의 변수 집합이다.<br><br>
+                    <strong><span style="color: rgb(0, 0, 153);">SSM의 수식 표현</span></strong>
+                </p>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <img loading="lazy" src="static/images/equation.png" style="margin-right: 10px; max-width: 30%; height: auto;" />
+                    <img loading="lazy" src="static/images/equation2.png" style="max-width: 30%; height: auto;" />
+                </div>
+                
+                <p>
+                    discrete하게 표현했을 때는 현재상태가 이전상태에 의존한다는 것에서 <span style="color: rgb(0, 0, 153);">RNN과 유사</span>함을 알 수 있다. RNN과 다른 점은 <span style="color: rgb(0, 0, 153);">각 방정식에 대해서 A,B,C,D 행렬이 곱해져 있다는 것</span>이다.<br><br>
+                    <strong><span style="color: rgb(0, 0, 153);">문제점</span></strong><br>
+                    1.  SSM은 주로 continous한 데이터에 최적화되어 있기 때문에, discrete 데이터를 효과적으로 다루기 위해서는 <span style="color: rgb(0, 0, 153);">discretization</span>이 필요하다.<br>
+                    2. 길어진 시퀀스에 대해서 정보를 잘 담아내지 못하여 <span style="color: rgb(0, 0, 153);">long dependency 처리에 어려움</span>이 있다.<br><br><br>
+                </p>
+                <h3 class="title is-4">S4 (Structured State Spaces for Sequences)</h3>
+                <h2 class="title is-5">SSM 문제에 대한 Solution</h2>
+                <p>
+                    <strong>1. ZOH(Zero Order Hold) 도입<br></strong>
+                    <span style="color: rgb(0, 0, 153);">각 데이터 포인트를 다음 데이터 포인트가 나타날 때까지 유지하면서 연속적으로 표현하는 방식</span>이다.<br>
+                    ⇒ discrete 데이터를 연속적인 형태로 자연스럽게 변환하며, SSM이 discrete 데이터를 처리하는 데 있어서 발생하는 문제를 해결한다.<br>
+                </p>
+                <img loading='lazy' src='static/images/S4.png' style="width: 50%; height: auto;" />
+                <p>
+                    <br><br>
+                    <strong>2. HiPPO (History and Prediction in Polynomial time) 매트릭스</strong><br>
+                    긴 시간 동안의 의존성 문제를 해결하며,
+                    이전 상태를 잘 기억하기 위해서 중요한 <span style="color: rgb(0, 0, 153);">A matrix를 HiPPO 매트릭스로 초기화</span>함으로써, SSM의 긴 시퀀스 처리 문제를 해결한다.<br>
+                </p>
+                <img loading='lazy' src='static/images/HiPPO.png' style="width: 50%; height: auto;" />
+                <br><br>
+                <h3 class="title is-4">S6 (Selective Scan Structured State Spaces for Sequences)</h3>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <img loading="lazy" src="static/images/A.png" style="margin-right: 50px; max-width: 50%; height: auto;" />
+                    <img loading="lazy" src="static/images/B.png" style="max-width: 50%; height: auto;" />
+                </div>
+                <p>
+                    <br><strong>A matrix</strong> : HiPPO matrix로 state transmission 역할을 수행하기 때문에 <span style="color: rgb(0, 0, 153);">제외한다.</span><br>
+                    <strong>고정된 크기의 B,C,D 행렬</strong> : 시퀀스 벡터처럼 Batch Size, Sequence length만큼 행렬을 <span style="color: rgb(0, 0, 153);">텐서</span>로 만들면 Selective하게 정보를 선택 가능하다.<br><br><br>
+                </p>
+                <div style="display: flex; justify-content: center;">
+                    <img loading='lazy' src='static/images/block.png' style="width: 45%; height: auto;" />
+                </div> 
+                <p>
+                    <strong><span style="color: rgb(0, 0, 153);">S6를 블록으로 사용</span>해서 <span style="color: rgb(0, 0, 153);">Gated NLP와 H3를 합쳐서 mamba block으로 사용</span>함으로써  <span style="font-size: 22px; font-weight: bold;">Mamba</span>라는 아키텍처 제안하고 있다.</strong><br>
+                </p>
+                <br>
+            </div>
+        </div>
+    </section>
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3"> Project</h2>
+                <h2 class="title is-4"> Vision Mamba</h2>
+                <p>
+                    우리가 프로젝트에 사용하는건 <span style="font-size: 24px; font-weight: bold;">Vision Mamba</span>이지만, Mamba나 Transformer은 <span style="color: rgb(0, 0, 153);">sequential data</span>를 다루지 않았나?<br>
+                    <strong>따라서, 모델에 넣을 image데이터를 sequential한 embedding으로 바꾼다.</strong><br><br>
+                </p>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <img loading="lazy" src="static/images/VM1.png" style="margin-right: 50px; max-width: 30%; height: auto;" />
+                    <img loading="lazy" src="static/images/VM2.png" style="max-width: 40%; height: auto;" />
+                </div>
+                <div style="display: flex; justify-content: center;">
+                    <img loading='lazy' src='static/images/VM3.png' style="width: 60%; height: auto;" />
+                </div> 
+                <p>
+                    <br>4X4 이미지가 있다고 할 때, 16개의 <span style="color: rgb(0, 0, 153);">patch로 분할</span>하여 <span style="color: rgb(0, 0, 153);">projection과 flatten</span>을 통하여 하나의 embedding으로 만들어주고, 이미지는 각 패치가 어느위치에 있었느냐가 중요한 정보이기에 <span style="color: rgb(0, 0, 153);">position matrix</span> 또한 새로운 embedding으로 바꾼다. <span style="color: rgb(0, 0, 153);">두 embedding을 더하여</span> vision mamba에 넣을 <span style="color: rgb(0, 0, 153);">input</span>으로 바꿔준다.<br><br><br>
+                </p>
+                <h2 class="title is-4">ECG 데이터</h2>
+                <div style="display: flex; justify-content: center;">
+                    <img loading='lazy' src='static/images/ECG.png' style="width: 50%; height: auto;" />
+                </div> 
+                <p>
+                    <span style="font-size: 22px; font-weight: bold;">ECG</span>란 심전도 검사로 심장의 운동을 전극으로 측정하여, <span style="color: rgb(0, 0, 153);">signal data로 기록</span>한 의료 데이터의 한 종류이다.<br><br><br>
+                </p>
+                <h2 class="title is-4">METHOD</h2>
+                <p>
+                    ECG 처리 관련 논문 중 <span style="color: rgb(0, 0, 153);">한 lead를 vector로 보는 관점에서 12개의 lead를 전부 concatenate 시켜 하나의 이미지로 처리</span>한다. 이 이미지를 <span style="color: rgb(0, 0, 153);">time step(1초)에 따라 patch로 나누어 vision mamba의 input으로 사용하여 학습</span>시키는 방식을 채택하여 Vision Mamba를 프로젝트에 사용했다.
+                </p>
+                <div style="display: flex; justify-content: center;">
+                    <img loading='lazy' src='static/images/project.png' style="width: 80%; height: auto;" />
+                </div> 
+            </div>
+        </div>
+    </section>
+    
+    <section class="hero is-light">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Result & Conclusion</h2>
+                <h2 class="title is-5">사용한 dataset</h2>
+                <div style="display: flex; justify-content: center;">
+                    <img loading='lazy' src='static/images/dataset.png' style="width: 60%; height: auto;" />
+                </div> 
+                <h2 class="title is-4">Result</h2>
+                <p>
+                    ECG-Arrhythmia 데이터셋에서 <span style="color: rgb(0, 0, 153);">10가지 심장 질환을 분류하는 task를 학습시켜</span> 아래의 Metric으로 결과를 도출했다.
+                </p>
+                <div style="display: flex; justify-content: center;">
+                    <img loading='lazy' src='static/images/result.png' style="width: 45%; height: auto;" />
+                </div>
+                <h2 class="title is-4">Conclusion</h2>
+                <p>
+                    이번 프로젝트를 통해 <span style="color: rgb(0, 0, 153);">새로운 메커니즘인 아키텍처 Mamba를 제안</span>하며, <span style="color: rgb(0, 0, 153);">ECG를 matrix(이미지) 관점으로 보는 transform하는</span> Method를 채택했다. 앞으로 AI 분야에서 Mamba가 핵심 기술이 될 것을 기대한다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!--BibTex citation -->
+    <!-- <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>@misc{Lee@koala,
+    title={KOALA: Self-Attention Matters in Knowledge Distillation of Latent Diffusion Models for Memory-Efficient and Fast Image Synthesis}, 
+    author={Youngwan Lee and Kwanyong Park and Yoorhim Cho and Yong-Ju Lee and Sung Ju Hwang},
+    year={2023},
+    eprint={2312.04005},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}</code></pre>
+        </div>
+    </section> -->
+    <!--End BibTex citation -->
+
+
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+</body>
+
+</html>
