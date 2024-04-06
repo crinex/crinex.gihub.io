@@ -1,1 +1,402 @@
+﻿<!DOCTYPE html>
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <!-- Meta tags for social media banners, these should be filled in appropriately as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <!-- <meta name="description" content="DESCRIPTION META TAG"> -->
+    <!-- <meta property="og:title"
+        content="Skip-GANomaly++: Skip Connections and Residual Blocks for Anomaly Detection" /> -->
+    <!-- <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG" /> -->
+    <!-- <meta property="og:url" content="https://crinex.github.io/pages/skipganpp/" /> -->
+    <!-- Path to banner image, should be in the path listed below. Optimal dimensions are 1200X630-->
+    <!-- <meta property="og:image" content="static/images/banner.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" /> -->
+
+
+    <!-- <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+    <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG"> -->
+    <!-- Path to banner image, should be in the path listed below. Optimal dimensions are 1200X600-->
+    <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png"> -->
+    <!-- <meta name="twitter:card" content="summary_large_image"> -->
+    <!-- Keywords for your paper to be indexed by-->
+    <!-- <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE"> -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
+
+    <title>Triple U-Net</title>
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/index.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.1.1/gradio.js"></script>
+</head>
+<body>
+
+
+    <section class="hero banner">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-2 publication-title">Triple U-Net<br>
+                             :3 Cascaded Brain Tumor Segmentation <br/> using 3D U-Net</h1>
+                        <div class="is-size-5 publication-authors">
+                            <!-- Paper authors -->
+                            <span class="author-block">
+                                 Chaehyeong Kim</a><sup style="color:#aa0404;">1 </sup>,</span>
+                            <span class="author-block">
+                                Yuyeon Kim</a><sup style="color:#439b08;">2</sup>,</span>
+                            <span class="author-block">
+                                Hyunji Lee</a><sup style="color:#ecaa2e;">3</sup>,</span>
+
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup style="color:#aa0404;">1</sup>Sookmyung Women's University',</span>
+                            <span class="author-block"><sup style="color:#439b08;">2</sup>Dongguk University,</span>
+                            <span class="author-block"><sup style="color:#ecaa2e;">3</sup>Korea University</span>
+                        </div>
+                        <!--
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <span class="link-block">
+                                    <a href="https://ieeexplore.ieee.org/document/10320072" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span><i>arxiv</i></span>
+                    
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image carousel -->
+    <!-- End image carousel -->
+
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Brain Tumor Segmentation is a crucial technology with the potential to revolutionize the diagnosis and treatment of brain tumors.
+                            To effectively segment brain tumors, we have developed an approach called the
+                             <b><span class="highlight-yellow">Triple U-net</span></b>.
+                            <b><span class="highlight-yellow">Triple U-net</span></b> utilizes the anatomical structure of brain tumors in 3D MRI images 
+                            to sequentially separate the <b><span class="highlight-green">Whole Tumor</span></b>, 
+                            <b><span class="highlight-yellow">Tumor Core</span></b>, and <b><span class="highlight-red">Enhancing Tumor Core</span></b>
+                            using a cascade of U-net models.<br>
+                            <img loading="lazy" src="static/images/brain.png" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End paper abstract -->
+
+    <!-- Start demo page -->
+    <!-- <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-centered has-text-centered">
+                <h2 class="title is-3">Online Demo</h2>
+                <gradio-app src="https://pixart-alpha-pixart-alpha.hf.space" style="display: flex; justify-content: center;"></gradio-app>
+            </div>
+        </div>
+    </section> -->
+    <!-- End demo page -->
+
+
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Datasets and Data Preprocessing</h2>
+                <p>
+                  We used Kaggle's <b><span class="highlight-yellow">2019 Brats data</span></b>. 
+                  This data contains a total of five 3D MRI images including 
+                  <b><span class="highlight-yellow">T1/T1ce/T2/FLAIR and label</span></b>. 
+                  It also consists of a total of <b><span class="highlight-yellow">335 data</span></b> including
+                   <b><span class="highlight-yellow">HGG(259)</span> and <span class="highlight-yellow">LGG(76)</span></b>. 
+                  <br>
+                  <img loading="lazy" src="./static/images/data.png" /> 
+                  <br/>
+                  We ran several data preprocessing methods for brain tumor segmentation. 
+                  For <b><span class="highlight-yellow">Data Augmentation</span></b>, 
+                  <b>flip, rotation, and elastic deformation</b> were used. 
+                  First, we used a flip that flips the 3D image along the x, y, and z axes and a rotation
+                  that rotates 30°. After that, we even used elastic deformation, a technique that
+                  increases or reduces each image by moving or rotating the pixels of the image little
+                  by little using a square grid. In addition, due to a limited gpu memory problem,
+                  the size of each data was reduced(from 240x240 to 160x160) by using resize. Finally,
+                  for <b><span class="highlight-yellow">3 cascaded segmentation</span></b>, the crop technique was used. 
+                  It randomly cuts including the
+                  labels from the previous model, which enters the input of the next model.
+                
+                </p>
+                <br>
+            </div>
+        </div>
+    </section>
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+              <h2 class="title is-3">3D U-net</h2>                
+              <p>
+                We chose the widely used <b><span class="highlight-yellow">3D U-Net</span></b> architecture for its applicability 
+                to our <b><span class="highlight-yellow">3D data</span></b> and its frequent usage in <b><span class="highlight-yellow">medical data processing</span></b>. 
+                This <b><span class="highlight-yellow">3D U-Net</span></b> extends the structure of the <b><span class="highlight-yellow">2D U-Net</span></b> model to handle 
+                <b><span class="highlight-yellow">3D volumes</span></b> as input.
+                <!-- The <b>3D U-Net</b> architecture effectively processes <b>3D medical data</b> by compressing it through an <b>encoder</b>, restoring it through a <b>decoder</b>, and utilizing <b>skip connections</b> to prevent the loss of spatial information. -->
+              </p>
+              <br>
+              
+              <!-- <h3 class="title is-5">Architecture Overview</h3> -->
+              <img loading='lazy' src='./static/images/3dUNet.png' style="width: 100%;" />
+              <p>
+                The structure of the <b><span class="highlight-yellow">3D U-Net</span></b> resembles the shape of the letter "U", hence the name <b><span class="highlight-yellow">U-Net</span></b>. In the <b><span class="highlight-yellow">U-Net</span></b> architecture, the input and output dimensions are matched, requiring the model to compress the input data through an <b><span class="highlight-yellow">encoder</span></b> and then restore it to its original size through a <b><span class="highlight-yellow">decoder</span></b>.
+              </p>
+              <br>
+              
+              <h3 class="title is-5">Encoder</h3>
+              <!-- <img loading='lazy' src='./static/images/Encoder.png' style="width: 100%;" /> -->
+
+              <p>
+                The <b><span class="highlight-yellow">encoder</span></b> begins with processing the input data through <b><span class="highlight-yellow">convolutional operations</span></b>, followed by <b><span class="highlight-yellow">batch normalization</span></b> and <b><span class="highlight-yellow">ReLU activation</span></b>. Subsequently, <b><span class="highlight-yellow">max-pooling layers</span></b> are employed to reduce the size of the feature maps, effectively extracting features from the input image. As this process continues, the <b><span class="highlight-yellow">spatial resolution</span></b> of the image decreases.
+              </p>
+              <br>
+              
+              <h3 class="title is-5">Decoder</h3>
+              <!-- <img loading='lazy' src='./static/images/Decoder.png' style="width: 100%;" /> -->
+
+              <p>
+                The <b><span class="highlight-yellow">decoder's</span></b> role is to restore the shrunken data from the <b><span class="highlight-yellow">encoder</span></b> back to its original size. Similar to the <b><span class="highlight-yellow">encoder</span></b>, the <b><span class="highlight-yellow">decoder</span></b> utilizes <b><span class="highlight-yellow">convolutional layers</span></b>, but instead of <b><span class="highlight-yellow">max-pooling</span></b>, it employs <b><span class="highlight-yellow">upconvolution</span></b> to upsample the feature maps. This iterative process helps in restoring the size of the data. 
+              </p>
+              <br>
+              
+              <h3 class="title is-5">Skip Connection</h3>
+              <!-- <img loading='lazy' src='./static/images/SkipConnection.png' style="width: 100%;" /> -->
+              <p>
+                To address the reduction in spatial resolution that occurs during the encoding process, <b><span class="highlight-yellow">skip connections</span></b> are employed. These connections directly link corresponding layers of the <b><span class="highlight-yellow">encoder</span></b> and <b><span class="highlight-yellow">decoder</span></b>, allowing for the preservation of spatial information and fine details from the input image.
+              </p>
+              <br>
+    
+              
+
+                <!-- <img loading="lazy" src="static/images/sa-structure.png" alt="human" style="width: 100%; max-width: none;" /> -->
+                <!-- <img loading="lazy" src="static/images/controlnet/controlnet_iclr.svg" alt="iclr" /> -->
+            </div>
+        </div>
+    </section>
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Triple U-Net: 3 Cascaded 3D U-Net</h2>
+                <img loading="lazy" src="static/images/TripleUnet.png" alt="comp" style="width: 90%; max-width: none;" />
+                <p>
+                  In the 1st <b><span class="highlight-yellow">3D U-net</span></b>, the input 3D MRI image is used to segment the <b><span class="highlight-yellow">Whole Tumor</span></b>, 
+                  and the cropped image of the <b><span class="highlight-yellow">Whole Tumor</span></b> goes into 2nd <b><span class="highlight-yellow">3D U-Net</span></b>. 
+                  In the 2nd <b><span class="highlight-yellow">U-net</span></b>, the <b><span class="highlight-yellow">Tumor Core</span></b> is segmented 
+                  and the cropped image of the <b><span class="highlight-yellow">Tumor Core</span></b> is then put into the 3rd <b><span class="highlight-yellow">3D U-Net</span></b> 
+                  to segment the <b><span class="highlight-yellow">Enhancing Tumor Core</span></b>. 
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Results</h2>
+
+
+                <p>
+                  The <b><span class="highlight-yellow">Dice loss, Adam optimizer, and Step Learning Rate</span></b> combination exhibited the best performance. However, it struggled with both false positives and false negatives, achieving only around <b><span class="highlight-yellow">12% accuracy</span></b>.
+                  <br>
+                  <br>
+
+                  <img loading="lazy" src="./static/images/Loss_LR.png" />
+                  <br/>
+                  Analysis of the two best-performing models revealed a steady decline in <b><span class="highlight-yellow">Train Loss</span></b> throughout training, with a notable decrease in <b><span class="highlight-yellow">Validation Loss</span></b> around 30 epochs, indicating successful training. However, due to the complexity of 3D data and preprocessing, each training epoch took approximately 24 hours, limiting the number of epochs tested. Further experimentation with more epochs could improve performance.
+                </p>
+                <br>
+
+                <p>
+                  
+                  <div style="overflow-x: auto; white-space: nowrap;">
+                    <img loading="lazy" src="./static/images/TripleUNetRes3.png" style="display: inline-block;" />
+                    <img loading="lazy" src="./static/images/TripleUNetRes2.png" style="display: inline-block; margin-right: 10px;" />
+                    <img loading="lazy" src="./static/images/TripleUNetRes1.png" style="display: inline-block; margin-right: 10px;" />
+                  </div>
+                  We visualized the <b><span class="highlight-yellow">our model</span></b>, which exhibited a high number of false positives and negatives, indicating a need for performance improvement.
+                  Other methods will be explored in the future due to time constraints.
+                </p>
+                <br>
+              </div>
+            </div>
+        </section>
+    <section class="hero is-small">
+
+      <div class="hero-body">
+          <div class="container is-max-desktop">
+              <h2 class="title is-3">Analysis</h2>
+                <p>
+                  The following reasons were analyzed for the current results:
+                  <br>
+                  <h2 class="title is-5">1. Loss of information during Resize</b></h2>
+                  <img loading="lazy" src="./static/images/ResizeLoss.png" />
+                  The <b><span class="highlight-yellow">resizing process</span></b> resulted in <b><span class="highlight-red">data loss</span></b>.
+                  <br>
+                  <br><br>
+                  <h2 class="title is-5">2. Small Batch Size</b></h2>
+                  Due to <b><span class="highlight-red">hardware limitations</span></b>, a <b><span class="highlight-red">small batch size</span></b> of <b><span class="highlight-yellow">2</span></b> was used.
+                  <br><br>
+                  <h2 class="title is-5">3. Lack of Modality Information Input</b></h2>
+                  <b><span class="highlight-red">Not specifying the modality input</span></b> hindered feature discernment.
+                  <br><br>
+                  <h2 class="title is-5">4. Insufficient Data</b></h2>
+                  The <b><span class="highlight-yellow">dataset size</span></b> might have been <b><span class="highlight-red">inadequate</span></b>.
+                  <br><br>
+                  <h2 class="title is-5">5. Issues with Training Parameters</b></h2>
+                  Parameters like <b><span class="highlight-yellow">preprocessing</span></b>, <b><span class="highlight-yellow">optimization</span></b>, and <b><span class="highlight-yellow">scheduler</span></b> might not have been <b><span class="highlight-red">explored sufficiently</span></b>.
+              </p>
+              
+              
+                
+
+            </div>
+        </div>
+    </section>
+
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Future Works</h2>
+                <h2 class="title is-5">1. Training with Server GPUs</h2>
+                  <p>
+                      Utilizing <b><span class="highlight-blue">server-grade GPUs</span></b> can resolve issues such as <b><span class="highlight-yellow">data loss from resizing</span></b>, 
+                      <b><span class="highlight-yellow">limited generalization due to small batch sizes</span></b>, and <b><span class="highlight-yellow">inadequate dataset size</span></b>. 
+                      However, this approach requires significant <b><span class="highlight-red">investment</span></b> and <b><span class="highlight-red">complex setup</span></b>, 
+                      which might not be feasible immediately due to <b><span class="highlight-red">lab resource constraints</span></b>.
+                  </p>
+                  <br><br>
+
+                  <h2 class="title is-5">2. Modality-Informed Training</h2>
+                  <p>
+                      Consideration of <b><span class="highlight-blue">modality-specific training</span></b> can address various issues arising from <b><span class="highlight-yellow">ignoring modality information</span></b>. 
+                      Applying <b><span class="highlight-yellow">modal-specific preprocessing</span></b> and <b><span class="highlight-yellow">training strategies</span></b> can potentially <b><span class="highlight-blue">enhance segmentation accuracy</span></b> and <b><span class="highlight-yellow">generalization</span></b>.
+                  </p>
+                  <br><br>
+
+                  <h2 class="title is-5">3. Data Augmentation</h2>
+                  <p>
+                      Expanding <b><span class="highlight-yellow">data augmentation techniques</span></b> can increase the <b><span class="highlight-yellow">variability of training data</span></b> and improve <b><span class="highlight-blue">model robustness</span></b>. 
+                      Techniques such as <b><span class="highlight-yellow">random cropping, elastic deformation, and intensity normalization</span></b> can be employed to simulate real-world variations in medical imaging data.
+                  </p>
+                  <br><br>
+
+                  <h2 class="title is-5">4. Hyperparameter Tuning</h2>
+                  <p>
+                      Conducting thorough <b><span class="highlight-yellow">hyperparameter tuning</span></b> experiments can optimize model performance. 
+                      Parameters such as <b><span class="highlight-yellow">learning rate, optimizer selection, and scheduler configuration</span></b> play crucial roles in determining model convergence and accuracy.
+                  </p>
+                  <br><br>
+
+                  <h2 class="title is-5">5. Transfer Learning</h2>
+                  <p>
+                      Leveraging <b><span class="highlight-yellow">transfer learning</span></b> from pre-trained models can accelerate model convergence and improve performance. 
+                      Pre-trained models on <b><span class="highlight-yellow">large medical imaging datasets</span></b> can <b><span class="highlight-blue">provide valuable feature representations that generalize well to new tasks.</span></b>
+                  </p>
+                  <br><br>
+
+                  <h2 class="title is-5">6. Ensemble Learning</h2>
+                  <p>
+                      Employing <b><span class="highlight-yellow">ensemble learning techniques</span></b> can <b><span class="highlight-blue">enhance segmentation accuracy and robustness. </span></b> 
+                      Combining predictions from multiple models or model variations can mitigate errors and uncertainties present in individual predictions.
+                  </p>
+                  <br><br>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Conclusion</h2>
+                <p>
+                  In this study, we introduced the <b><span class="highlight-yellow">Triple U-Net</span></b> architecture for <span class="highlight-yellow"><b>brain tumor segmentation</b></span>, <b><span class="highlight-yellow">consisting of three cascaded 3D U-Net models</span></b>.
+                  Despite achieving only modest accuracy, our approach lays the groundwork for future improvements through the exploration of advanced techniques such as <b><span class="highlight-yellow">training with server GPUs, modality-informed training, extensive data augmentation, hyperparameter tuning, transfer learning, and ensemble learning</span></b>.
+                  By addressing the identified limitations and incorporating these strategies, we aim to <b><span class="highlight-blue">enhance the accuracy and robustness</span></b> of brain tumor segmentation models, ultimately contributing to more effective diagnosis and treatment planning for patients with brain tumors.
+              </p>
+              
+            </div>
+        </div>
+    </section>
+
+</body>
+
+    <!-- Start footer -->
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Triple U-Net</strong> by Chaehyeong Kim, Yuyeon Kim, and Hyunji Lee.
+            </p>
+        </div>
+    </footer>
+    <!-- End footer -->
+
+    <footer class="footer">
+      <div class="container">
+          <div class="columns is-centered">
+              <div class="column is-8">
+                  <div class="content">
+                      <p>
+                          This page was built using the <a
+                              href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                              target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                              href="https://nerfies.github.io" target="_blank">Nerfies</a> and  <a
+                              href="https://pixart-alpha.github.io/" target="_blank">PixArt-alpha</a> project pages.
+                          You are free to borrow the of this website, we just ask that you link back to this page in
+                          the footer. <br> This website is licensed under a <a rel="license"
+                              href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                              Commons Attribution-ShareAlike 4.0 International License</a>.
+                      </p>
+                      <p class="has-text-centered">Total clicks: <span id="busuanzi_value_site_pv"></span></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </footer>
+
+  <!-- Statcounter tracking code -->
+
+  <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+  <!-- End of Statcounter Code -->
+</body>
+
+</html>

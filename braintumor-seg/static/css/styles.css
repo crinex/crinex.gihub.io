@@ -1,0 +1,16 @@
+/* 노랑 하이라이트 */
+.highlight-yellow {
+  background-color: #fff4bf; /* 연노랑 */
+}
+/* 빨강 하이라이트 */
+.highlight-red {
+  background-color: #FFB6C1; /* 연분홍 */
+}
+/* 파랑 하이라이트 */
+.highlight-blue {
+  background-color: #c7e3ec; /* 연파랑 */
+}
+/* 초록 하이라이트 */
+.highlight-green {
+  background-color: #c8ecc7; /* 연초록 */
+}
